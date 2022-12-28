@@ -1,13 +1,32 @@
 package hasuradc
 
-// TableType models a table type.
-type TableType string
+type TableInfo struct {
+	// Name is the fully qualified name of the table.
+	Name TableName `json:"name"`
 
-// This is the set of table types.
-const (
-	TableTypeTable TableType = "table"
-	TableTypeView  TableType = "view"
-)
+	// Columns ...
+	Columns []ColumnInfo `json:"columns"`
+
+	Type TableType `json:"type,omitempty"`
+
+	// Insertable is whether or not new rows can be inserted into the table.
+	Insertable *bool `json:"insertable,omitempty"`
+
+	// Updatable is whether or not existing rows can be updated in the table.
+	Updatable *bool `json:"updatable,omitempty"`
+
+	// Deletable is whether or not existing rows can be deleted in the table.
+	Deletable *bool `json:"deletable,omitempty"`
+
+	// ForeignKeys ...
+	ForeignKeys map[string]Constraint `json:"foreign_keys,omitempty"`
+
+	// PrimaryKey ...
+	PrimaryKey []string `json:"primary_key,omitempty"`
+
+	// Description ...
+	Description *string `json:"description,omitempty"`
+}
 
 // ColumnInfo contains a column information.
 type ColumnInfo struct {
@@ -30,6 +49,15 @@ type ColumnInfo struct {
 	// Updatable is whether or not the column can be updated.
 	Updatable bool `json:"updatable,omitempty"`
 }
+
+// TableType models a table type.
+type TableType string
+
+// This is the set of table types.
+const (
+	TableTypeTable TableType = "table"
+	TableTypeView  TableType = "view"
+)
 
 type Constraint struct {
 	// ForeignTable is the fully qualified name of a foreign table.
