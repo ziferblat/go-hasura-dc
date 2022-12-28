@@ -1,5 +1,11 @@
 package hasuradc
 
+import "context"
+
+type SchemaService interface {
+	Get(ctx context.Context, conf *Config) (*SchemaResponse, error)
+}
+
 type SchemaResponse struct {
 	// Tables is a list of available tables.
 	Tables []TableInfo `json:"tables"`
