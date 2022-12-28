@@ -30,3 +30,11 @@ type ColumnInfo struct {
 	// Updatable is whether or not the column can be updated.
 	Updatable bool `json:"updatable,omitempty"`
 }
+
+type Constraint struct {
+	// ForeignTable is the fully qualified name of a foreign table.
+	ForeignTable TableName `json:"foreign_table"`
+
+	// ColumnMapping ...
+	ColumnMapping map[string]string `json:"column_mapping"`
+}
