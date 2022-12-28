@@ -1,5 +1,10 @@
 package hasuradc
 
+type SchemaResponse struct {
+	// Tables is a list of available tables.
+	Tables []TableInfo `json:"tables"`
+}
+
 type TableInfo struct {
 	// Name is the fully qualified name of the table.
 	Name TableName `json:"name"`
