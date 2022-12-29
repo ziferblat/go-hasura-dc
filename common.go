@@ -1,4 +1,4 @@
-package hasuradc
+package dc
 
 // TableName is the fully qualified name of a table,
 // where the last item in the array is the table name

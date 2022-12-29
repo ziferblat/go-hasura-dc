@@ -1,4 +1,4 @@
-package hasuradc
+package dc
 
 type Agent struct {
 	Health HealthService
