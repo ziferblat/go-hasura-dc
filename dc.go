@@ -5,7 +5,10 @@ type Agent struct {
 	Schema SchemaService
 }
 
+// Config represents a model of the X-Hasura-DataConnector-Config header.
 type Config struct {
+	// DB is the database name,
+	// e.g. "/ru-central1/HwYLaqGaBt8hmM85wQq2/eCGNADsfxsbFyNrWPZCz".
 	DB string
 }
 
