@@ -13,6 +13,14 @@ type Config struct {
 
 	// Tables is a list of tables to be exposed.
 	Tables []string
+
+	// InludeMetaTable is whether to expose meta tables.
+	InludeMetaTable bool
+
+	// InludeMainSchema Flag is whether to opt into exposing tables
+	// by their fully qualified names, e.g. ["main", "table42"],
+	// instead of just ["table42"].
+	ExplicitMainSchema bool
 }
 
 // TableName is the fully qualified name of a table,
