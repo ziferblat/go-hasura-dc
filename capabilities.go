@@ -16,6 +16,12 @@ type CapabilitiesResponse struct {
 	ReleaseName string `json:"release_name,omitempty"`
 }
 
-type Capabilities struct{}
+type Capabilities struct {
+	ConfigSchema OpenApiSchema `json:"config_schema"`
+
+	OtherSchemas map[string]OpenApiSchema `json:"other_schemas"`
+}
+
+type OpenApiSchema struct{}
 
 type ConfigSchemaResponse struct{}
