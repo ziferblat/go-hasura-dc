@@ -1,8 +1,9 @@
 package dc
 
 type Agent struct {
-	Health HealthService
-	Schema SchemaService
+	Capabilities CapabilitiesService
+	Health       HealthService
+	Schema       SchemaService
 }
 
 // TableName is the fully qualified name of a table,
