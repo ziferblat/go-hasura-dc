@@ -3,7 +3,7 @@ package dc
 import "context"
 
 type HealthService interface {
-	// Check checks if the agent is running, or if particular data source
-	// is healthy.
-	Check(ctx context.Context, conf interface{}) error
+	// Check executes a query to check if a connection to the data source
+	// is availabile.
+	Check(ctx context.Context, conf any) error
 }
