@@ -18,7 +18,7 @@ type TableInfo struct {
 	// Columns ...
 	Columns []ColumnInfo `json:"columns"`
 
-	Type TableType `json:"type,omitempty"`
+	Type EntryType `json:"type,omitempty"`
 
 	// Insertable is whether or not new rows can be inserted into the table.
 	Insertable *bool `json:"insertable,omitempty"`
@@ -61,13 +61,13 @@ type ColumnInfo struct {
 	Updatable bool `json:"updatable,omitempty"`
 }
 
-// TableType models a table type.
-type TableType string
+// EntryType models a entry type.
+type EntryType string
 
 // This is the set of table types.
 const (
-	TableTypeTable TableType = "table"
-	TableTypeView  TableType = "view"
+	EntryTypeTable EntryType = "table"
+	EntryTypeView  EntryType = "view"
 )
 
 type Constraint struct {
