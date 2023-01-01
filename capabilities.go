@@ -32,4 +32,22 @@ type ConfigSchemasResponse struct {
 	OtherSchemas map[string]OpenApiSchema `json:"other_schemas"`
 }
 
-type OpenApiSchema struct{}
+type OpenApiSchema struct {
+	// Nullable is whether the value may be null.
+	Nullable bool `json:"nullable,omitempty"`
+
+	// Type defines the data type of an OpenAPI schema.
+	Type OASDataType `json:"type,omitempty"`
+}
+
+// OASDataType is a set of OpenAPI schema data types.
+type OASDataType string
+
+const (
+	OASDataTypeString  OASDataType = "string"
+	OASDataTypeNumber  OASDataType = "number"
+	OASDataTypeInteger OASDataType = "integer"
+	OASDataTypeBoolean OASDataType = "boolean"
+	OASDataTypeArray   OASDataType = "array"
+	OASDataTypeObject  OASDataType = "object"
+)
