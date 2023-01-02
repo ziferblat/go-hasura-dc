@@ -1,4 +1,13 @@
-package hasuradc
+package dc
+
+type Agent struct {
+	Health HealthService
+	Schema SchemaService
+}
+
+type Config struct {
+	DB string
+}
 
 // TableName is the fully qualified name of a table,
 // where the last item in the array is the table name
