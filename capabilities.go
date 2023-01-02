@@ -19,16 +19,26 @@ type CapabilitiesResponse struct {
 
 type Capabilities struct {
 	DataSchema DataSchemaCapabilities `json:"data_schema,omitempty"`
+
+	ScalarTypes map[ScalarType]ScalarTypeCapabilities `json:"scalar_types,omitempty"`
+}
+
+type ScalarTypeCapabilities struct {
+	AggregateFunctions map[string]ScalarType `json:"aggregate_functions,omitempty"`
+
+	ComparisonOperators map[string]ScalarType `json:"comparison_operators,omitempty"`
+
+	GraphqlType GraphQLType `json:"graphql_type,omitempty"`
 }
 
 type DataSchemaCapabilities struct {
-	ColumnNullability ColumnNullability `json:"column_nullability,omitempty"`
+	// SupportsPrimaryKeys is whether tables can have primary keys.
+	SupportsPrimaryKeys bool `json:"supports_primary_keys,omitempty"`
 
 	// SupportsForeignKeys is whether tables can have foreign keys.
 	SupportsForeignKeys bool `json:"supports_foreign_keys,omitempty"`
 
-	// SupportsPrimaryKeys is whether tables can have primary keys.
-	SupportsPrimaryKeys bool `json:"supports_primary_keys,omitempty"`
+	ColumnNullability ColumnNullability `json:"column_nullability,omitempty"`
 }
 
 type ColumnNullability string

@@ -6,6 +6,16 @@ type Agent struct {
 	Schema       SchemaService
 }
 
+type GraphQLType string
+
+const (
+	GraphQLTypeInt     GraphQLType = "Int"
+	GraphQLTypeFloat   GraphQLType = "Float"
+	GraphQLTypeString  GraphQLType = "String"
+	GraphQLTypeBoolean GraphQLType = "Boolean"
+	GraphQLTypeID      GraphQLType = "ID"
+)
+
 type ScalarType string
 
 // TableName is the fully qualified name of a table,
