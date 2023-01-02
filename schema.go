@@ -49,7 +49,7 @@ type ColumnInfo struct {
 	Nullable bool `json:"nullable"`
 
 	// Type is the data type of the column.
-	Type string `json:"type"`
+	Type ScalarType `json:"type"`
 
 	// Description is the column description.
 	Description *string `json:"description,omitempty"`
