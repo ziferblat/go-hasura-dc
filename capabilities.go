@@ -17,37 +17,6 @@ type CapabilitiesResponse struct {
 	Capabilities Capabilities `json:"capabilities"`
 }
 
-type Capabilities struct {
-	DataSchema DataSchemaCapabilities `json:"data_schema,omitempty"`
-
-	ScalarTypes map[ScalarType]ScalarTypeCapabilities `json:"scalar_types,omitempty"`
-}
-
-type ScalarTypeCapabilities struct {
-	AggregateFunctions map[string]ScalarType `json:"aggregate_functions,omitempty"`
-
-	ComparisonOperators map[string]ScalarType `json:"comparison_operators,omitempty"`
-
-	GraphqlType GraphQLType `json:"graphql_type,omitempty"`
-}
-
-type DataSchemaCapabilities struct {
-	// SupportsPrimaryKeys is whether tables can have primary keys.
-	SupportsPrimaryKeys bool `json:"supports_primary_keys,omitempty"`
-
-	// SupportsForeignKeys is whether tables can have foreign keys.
-	SupportsForeignKeys bool `json:"supports_foreign_keys,omitempty"`
-
-	ColumnNullability ColumnNullability `json:"column_nullability,omitempty"`
-}
-
-type ColumnNullability string
-
-const (
-	ColumnNullabilityNull           ColumnNullability = "only_nullable"
-	ColumnNullabilityNullAndNotNull ColumnNullability = "nullable_and_non_nullable"
-)
-
 // ConfigSchemasResponse ...
 //
 // Note. OpenAPI specification name: ConfigSchemaResponse.
@@ -75,3 +44,46 @@ const (
 	OASDataTypeArray   OASDataType = "array"
 	OASDataTypeObject  OASDataType = "object"
 )
+
+type Capabilities struct {
+	DataSchema DataSchemaCapabilities `json:"data_schema,omitempty"`
+
+	ScalarTypes map[ScalarType]ScalarTypeCapabilities `json:"scalar_types,omitempty"`
+
+	Comparisons ComparisonCapabilities `json:"comparisons,omitempty"`
+}
+
+type DataSchemaCapabilities struct {
+	// SupportsPrimaryKeys is whether tables can have primary keys.
+	SupportsPrimaryKeys bool `json:"supports_primary_keys,omitempty"`
+
+	// SupportsForeignKeys is whether tables can have foreign keys.
+	SupportsForeignKeys bool `json:"supports_foreign_keys,omitempty"`
+
+	ColumnNullability ColumnNullability `json:"column_nullability,omitempty"`
+}
+
+type ColumnNullability string
+
+const (
+	ColumnNullabilityNull           ColumnNullability = "only_nullable"
+	ColumnNullabilityNullAndNotNull ColumnNullability = "nullable_and_non_nullable"
+)
+
+type ScalarTypeCapabilities struct {
+	AggregateFunctions map[string]ScalarType `json:"aggregate_functions,omitempty"`
+
+	ComparisonOperators map[string]ScalarType `json:"comparison_operators,omitempty"`
+
+	GraphQLType GraphQLType `json:"graphql_type,omitempty"`
+}
+
+type ComparisonCapabilities struct {
+	Subquery SubqueryComparisonCapabilities `json:"subquery,omitempty"`
+}
+
+type SubqueryComparisonCapabilities struct {
+	// SupportsRelations is whether support comparisons
+	// that involve related tables, i.e. joins.
+	SupportsRelations bool `json:"supports_relations,omitempty"`
+}
