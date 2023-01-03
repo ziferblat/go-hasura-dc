@@ -23,6 +23,9 @@ type CapabilitiesResponse struct {
 type ConfigSchemasResponse struct {
 	ConfigSchema OpenApiSchema `json:"config_schema"`
 
+	// OtherSchemas ...
+	//
+	// Note. Allocate memory for this field for proper JSON serialization.
 	OtherSchemas map[string]OpenApiSchema `json:"other_schemas"`
 }
 
