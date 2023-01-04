@@ -24,8 +24,6 @@ type ConfigSchemasResponse struct {
 	ConfigSchema OpenApiSchema `json:"config_schema"`
 
 	// OtherSchemas ...
-	//
-	// Note. Allocate memory for this field for proper JSON serialization.
 	OtherSchemas map[string]OpenApiSchema `json:"other_schemas"`
 }
 
@@ -50,15 +48,11 @@ const (
 
 type Capabilities struct {
 	// DataSchema ...
-	//
-	// Note. Pointer is used for proper JSON serialization.
 	DataSchema *DataSchemaCapabilities `json:"data_schema,omitempty"`
 
 	ScalarTypes map[ScalarType]ScalarTypeCapabilities `json:"scalar_types,omitempty"`
 
 	// Comparisons ...
-	//
-	// Note. Pointer is used for proper JSON serialization.
 	Comparisons *ComparisonCapabilities `json:"comparisons,omitempty"`
 }
 
@@ -89,8 +83,6 @@ type ScalarTypeCapabilities struct {
 
 type ComparisonCapabilities struct {
 	// Subquery ...
-	//
-	// Note. Pointer is used for proper JSON serialization.
 	Subquery *SubqueryComparisonCapabilities `json:"subquery,omitempty"`
 }
 
