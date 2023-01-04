@@ -3,7 +3,7 @@ package dc
 import "context"
 
 type SchemaService interface {
-	Get(ctx context.Context, conf *Config) (*SchemaResponse, error)
+	Get(ctx context.Context, conf interface{}) (*SchemaResponse, error)
 }
 
 type SchemaResponse struct {
