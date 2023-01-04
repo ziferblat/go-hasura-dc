@@ -49,7 +49,10 @@ const (
 )
 
 type Capabilities struct {
-	DataSchema DataSchemaCapabilities `json:"data_schema,omitempty"`
+	// DataSchema ...
+	//
+	// Note. Pointer is used for proper JSON serialization.
+	DataSchema *DataSchemaCapabilities `json:"data_schema,omitempty"`
 
 	ScalarTypes map[ScalarType]ScalarTypeCapabilities `json:"scalar_types,omitempty"`
 
