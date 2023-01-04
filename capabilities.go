@@ -53,7 +53,10 @@ type Capabilities struct {
 
 	ScalarTypes map[ScalarType]ScalarTypeCapabilities `json:"scalar_types,omitempty"`
 
-	Comparisons ComparisonCapabilities `json:"comparisons,omitempty"`
+	// Comparisons ...
+	//
+	// Note. Pointer is used for proper JSON serialization.
+	Comparisons *ComparisonCapabilities `json:"comparisons,omitempty"`
 }
 
 type DataSchemaCapabilities struct {
@@ -82,7 +85,10 @@ type ScalarTypeCapabilities struct {
 }
 
 type ComparisonCapabilities struct {
-	Subquery SubqueryComparisonCapabilities `json:"subquery,omitempty"`
+	// Subquery ...
+	//
+	// Note. Pointer is used for proper JSON serialization.
+	Subquery *SubqueryComparisonCapabilities `json:"subquery,omitempty"`
 }
 
 type SubqueryComparisonCapabilities struct {
