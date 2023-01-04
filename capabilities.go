@@ -54,6 +54,8 @@ type Capabilities struct {
 
 	// Comparisons ...
 	Comparisons *ComparisonCapabilities `json:"comparisons,omitempty"`
+
+	Mutations *MutationCapabilities `json:"mutations,omitempty"`
 }
 
 type DataSchemaCapabilities struct {
@@ -91,3 +93,52 @@ type SubqueryComparisonCapabilities struct {
 	// that involve related tables, i.e. joins.
 	SupportsRelations bool `json:"supports_relations,omitempty"`
 }
+
+type MutationCapabilities struct {
+	AtomicitySupportLevel AtomicitySupportLevel `json:"atomicity_support_level,omitempty"`
+
+	Delete DeleteCapabilities `json:"delete,omitempty"`
+
+	Insert *InsertCapabilities `json:"insert,omitempty"`
+
+	Returning ReturningCapabilities `json:"returning,omitempty"`
+
+	Update UpdateCapabilities `json:"update,omitempty"`
+}
+
+// AtomicitySupportLevel describes the level of transactional
+// atomicity the agent supports for mutation operations.
+type AtomicitySupportLevel string
+
+// List of AtomicitySupportLevel values.
+const (
+	// FIXME: rename constants
+
+	// If multiple rows are affected in a single operation but one fails,
+	// only the failed row's changes will be reverted.
+	AtomicitySupportLevelRow AtomicitySupportLevel = "row"
+
+	// If multiple rows are affected in a single operation but one fails,
+	// all affected rows in the operation will be reverted.
+	AtomicitySupportLevelSingleOperation AtomicitySupportLevel = "single_operation"
+
+	// If multiple operations of only the same type exist in the one mutation request,
+	// a failure in one will result in all changes being reverted
+	AtomicitySupportLevelHomogeneousOperations AtomicitySupportLevel = "homogeneous_operations"
+
+	// If multiple operations of any type exist in the one mutation request,
+	// a failure in one will result in all changes being reverted.
+	AtomicitySupportLevelHeterogeneousOperations AtomicitySupportLevel = "heterogeneous_operations"
+)
+
+type DeleteCapabilities any
+
+type InsertCapabilities struct {
+	// SupportsNestedInserts is whether nested inserts
+	// to related tables are supported.
+	SupportsNestedInserts bool `json:"supports_nested_inserts,omitempty"`
+}
+
+type ReturningCapabilities any
+
+type UpdateCapabilities any
