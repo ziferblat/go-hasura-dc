@@ -28,6 +28,8 @@ type ConfigSchemasResponse struct {
 }
 
 type OpenApiSchema struct {
+	// FIXME: define all supported properties of OpenApiSchema.
+
 	// Nullable is whether the value may be null.
 	Nullable bool `json:"nullable,omitempty"`
 
@@ -47,6 +49,8 @@ const (
 )
 
 type Capabilities struct {
+	// FIXME: define all supported properties of Capabilities.
+
 	// DataSchema ...
 	DataSchema *DataSchemaCapabilities `json:"data_schema,omitempty"`
 
