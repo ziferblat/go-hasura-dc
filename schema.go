@@ -3,7 +3,7 @@ package dc
 import "context"
 
 type SchemaService interface {
-	Get(ctx context.Context, conf interface{}) (*SchemaResponse, error)
+	Get(ctx context.Context, conf any) (*SchemaResponse, error)
 }
 
 type SchemaResponse struct {
@@ -18,7 +18,7 @@ type TableInfo struct {
 	// Columns ...
 	Columns []ColumnInfo `json:"columns"`
 
-	Type TableType `json:"type,omitempty"`
+	Type EntryType `json:"type,omitempty"`
 
 	// Insertable is whether or not new rows can be inserted into the table.
 	Insertable *bool `json:"insertable,omitempty"`
@@ -49,7 +49,7 @@ type ColumnInfo struct {
 	Nullable bool `json:"nullable"`
 
 	// Type is the data type of the column.
-	Type string `json:"type"`
+	Type ScalarType `json:"type"`
 
 	// Description is the column description.
 	Description *string `json:"description,omitempty"`
@@ -61,13 +61,13 @@ type ColumnInfo struct {
 	Updatable bool `json:"updatable,omitempty"`
 }
 
-// TableType models a table type.
-type TableType string
+// EntryType models a entry type.
+type EntryType string
 
 // This is the set of table types.
 const (
-	TableTypeTable TableType = "table"
-	TableTypeView  TableType = "view"
+	EntryTypeTable EntryType = "table"
+	EntryTypeView  EntryType = "view"
 )
 
 type Constraint struct {

@@ -1,9 +1,22 @@
 package dc
 
 type Agent struct {
-	Health HealthService
-	Schema SchemaService
+	Capabilities CapabilitiesService
+	Health       HealthService
+	Schema       SchemaService
 }
+
+type GraphQLType string
+
+const (
+	GraphQLTypeInt     GraphQLType = "Int"
+	GraphQLTypeFloat   GraphQLType = "Float"
+	GraphQLTypeString  GraphQLType = "String"
+	GraphQLTypeBoolean GraphQLType = "Boolean"
+	GraphQLTypeID      GraphQLType = "ID"
+)
+
+type ScalarType string
 
 // TableName is the fully qualified name of a table,
 // where the last item in the array is the table name
