@@ -4,6 +4,7 @@ type Agent struct {
 	Capabilities CapabilitiesService
 	Health       HealthService
 	Schema       SchemaService
+	Query        QueryService
 }
 
 type GraphQLType string
