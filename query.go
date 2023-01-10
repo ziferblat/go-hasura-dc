@@ -17,9 +17,13 @@ type Query struct {
 
 	Fields map[string]ColumnField `json:"fields,omitempty"`
 
-	Limit *int `json:"limit,omitempty"`
+	// Limit is the maximum number of rows to return.
+	// Null value is treated as no limit.
+	Limit *uint `json:"limit,omitempty"`
 
-	Offset *int `json:"offset,omitempty"`
+	// Offset is the number of rows to skip before returning.
+	// Null value is treated as 0.
+	Offset *uint `json:"offset,omitempty"`
 
 	OrderBy *OrderBy `json:"order_by,omitempty"`
 
