@@ -1,5 +1,7 @@
 package dc
 
+import "strings"
+
 type Agent struct {
 	Capabilities CapabilitiesService
 	Health       HealthService
@@ -23,3 +25,8 @@ type ScalarType string
 // where the last item in the array is the table name
 // and any earlier items represent the namespacing of the table name.
 type TableName []string
+
+// StringWithSep returns a string representaion of the table name.
+func (t *TableName) StringWithSep(sep string) string {
+	return strings.Join(*t, sep)
+}
