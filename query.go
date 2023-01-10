@@ -3,7 +3,7 @@ package dc
 import "context"
 
 type QueryService interface {
-	Exec(ctx context.Context, conf any, q QueryRequest) (*QueryResponse, error)
+	Exec(ctx context.Context, conf any, rq QueryRequest) (*QueryResponse, error)
 }
 
 type QueryRequest struct {
