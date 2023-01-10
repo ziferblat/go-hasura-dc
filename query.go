@@ -3,7 +3,7 @@ package dc
 import "context"
 
 type QueryService interface {
-	Exec(ctx context.Context, conf any, q QueryRequest) (*ExecQueryResponse, error)
+	Exec(ctx context.Context, conf any, q QueryRequest) (*QueryResponse, error)
 }
 
 type QueryRequest struct {
@@ -40,6 +40,10 @@ type OrderBy struct{}
 
 type Where struct{}
 
-type ExecQueryResponse struct{}
-
 type TableRelationships struct{}
+
+type QueryResponse struct {
+	Aggregates map[string]any `json:"aggregates,omitempty"`
+
+	Rows []map[string]any `json:"rows,omitempty"`
+}
