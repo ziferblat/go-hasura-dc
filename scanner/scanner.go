@@ -7,18 +7,18 @@ import (
 
 // Scan copies the columns in the current row into the map pointed at by dest.
 // If possible, it converts val to scalar type.
-func ScanMap(rs *sql.Rows, dest map[string]interface{}) error {
+func ScanMap(rs *sql.Rows, dest map[string]any) error {
 	return copy(rs, dest)
 }
 
-func copy(rs *sql.Rows, dest map[string]interface{}) error {
+func copy(rs *sql.Rows, dest map[string]any) error {
 	cols, err := rs.Columns()
 	if err != nil {
 		return err
 	}
 	len := len(cols)
-	vals := make([]interface{}, len)
-	ptrs := make([]interface{}, len)
+	vals := make([]any, len)
+	ptrs := make([]any, len)
 	for i := 0; i < len; i++ {
 		ptrs[i] = &vals[i]
 	}
@@ -26,14 +26,14 @@ func copy(rs *sql.Rows, dest map[string]interface{}) error {
 		return err
 	}
 	for i, col := range cols {
-		val := ptrs[i].(*interface{})
+		val := ptrs[i].(*any)
 		dest[col] = decode(*val)
 	}
 
 	return nil
 }
 
-func decode(val interface{}) interface{} {
+func decode(val any) any {
 	bb, ok := val.([]byte)
 	if !ok {
 		return val
