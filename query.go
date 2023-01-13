@@ -51,7 +51,26 @@ type OrderBy struct{}
 
 type Where struct{}
 
-type TableRelationships struct{}
+type TableRelationships struct {
+	Relationships map[string]Relationship `json:"relationships"`
+
+	SourceTable TableName `json:"source_table"`
+}
+
+type Relationship struct {
+	ColumnMapping map[string]string `json:"column_mapping"`
+
+	RelationshipType RelationshipType `json:"relationship_type"`
+
+	TargetTable TableName `json:"target_table"`
+}
+
+type RelationshipType string
+
+const (
+	RelationshipTypeObject RelationshipType = "object"
+	RelationshipTypeArray  RelationshipType = "array"
+)
 
 type QueryResponse struct {
 	Aggregates map[string]any `json:"aggregates,omitempty"`
