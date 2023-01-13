@@ -37,8 +37,15 @@ type ColumnField struct {
 
 	ColumnType ScalarType `json:"column_type"`
 
-	Type string `json:"type"`
+	Type FieldType `json:"type"`
 }
+
+type FieldType string
+
+const (
+	FieldTypeColumn       FieldType = "column"
+	FieldTypeRelationship FieldType = "relationship"
+)
 
 type OrderBy struct{}
 
