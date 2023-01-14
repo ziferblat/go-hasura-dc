@@ -49,5 +49,9 @@ type TableRelationships struct{}
 type QueryResponse struct {
 	Aggregates map[string]any `json:"aggregates,omitempty"`
 
-	Rows []map[string]any `json:"rows,omitempty"`
+	// Rows is a set of rows returned by the query, corresponding
+	// to the query's fields.
+	//
+	// FIXME: Mark this prop as required in the Agent OpenAPI specification.
+	Rows []map[string]any `json:"rows"`
 }
