@@ -53,5 +53,6 @@ type QueryResponse struct {
 	// to the query's fields.
 	//
 	// FIXME: Mark this prop as required in the Agent OpenAPI specification.
+	// Also look at https://github.com/hasura/graphql-engine/issues/9380
 	Rows []map[string]any `json:"rows"`
 }
