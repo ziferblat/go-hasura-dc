@@ -1,4 +1,4 @@
-package scanner
+package sqlext
 
 import (
 	"database/sql"
