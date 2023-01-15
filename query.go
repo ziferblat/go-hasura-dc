@@ -15,7 +15,7 @@ type QueryRequest struct {
 type Query struct {
 	Aggregates map[string]Aggregate `json:"aggregates,omitempty"`
 
-	Fields map[string]ColumnField `json:"fields,omitempty"`
+	Fields map[string]Field `json:"fields,omitempty"`
 
 	// Limit is the maximum number of rows to return.
 	// Null value is treated as no limit.
@@ -32,10 +32,14 @@ type Query struct {
 
 type Aggregate struct{}
 
-type ColumnField struct {
-	Column string `json:"column"`
+type Field struct {
+	Column string `json:"column,omitempty"`
 
-	ColumnType ScalarType `json:"column_type"`
+	ColumnType ScalarType `json:"column_type,omitempty"`
+
+	Query Query `json:"query,omitempty"`
+
+	Relationship string `json:"relationship,omitempty"`
 
 	Type FieldType `json:"type"`
 }
