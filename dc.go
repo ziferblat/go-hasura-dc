@@ -27,8 +27,8 @@ type ScalarType string
 type TableName []string
 
 // StringWithSep returns a string representaion of the table name.
-func (t *TableName) StringWithSep(sep string) string {
-	return strings.Join(*t, sep)
+func (t TableName) StringWithSep(sep string) string {
+	return strings.Join(t, sep)
 }
 
 // Equal checks whether two table names are equal.
