@@ -32,6 +32,15 @@ type Query struct {
 
 type Aggregate struct{}
 
+// Field...
+//
+// FIXME: implement sum type for Field.
+//
+// It should be
+//
+//	type Field = (RelationshipField | ColumnField)
+//
+// In the current implementation, the fields of the two structures are merged.
 type Field struct {
 	Column string `json:"column,omitempty"`
 
