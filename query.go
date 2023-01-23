@@ -15,7 +15,7 @@ type QueryRequest struct {
 type Query struct {
 	Aggregates map[string]Aggregate `json:"aggregates,omitempty"`
 
-	Fields map[string]ColumnField `json:"fields,omitempty"`
+	Fields map[string]Field `json:"fields,omitempty"`
 
 	// Limit is the maximum number of rows to return.
 	// Null value is treated as no limit.
@@ -32,19 +32,58 @@ type Query struct {
 
 type Aggregate struct{}
 
-type ColumnField struct {
-	Column string `json:"column"`
+// Field...
+//
+// FIXME: implement sum type for Field.
+//
+// It should be
+//
+//	type Field = (RelationshipField | ColumnField)
+//
+// In the current implementation, the fields of the two structures are merged.
+type Field struct {
+	Column string `json:"column,omitempty"`
 
-	ColumnType ScalarType `json:"column_type"`
+	ColumnType ScalarType `json:"column_type,omitempty"`
 
-	Type string `json:"type"`
+	Query Query `json:"query,omitempty"`
+
+	Relationship string `json:"relationship,omitempty"`
+
+	Type FieldType `json:"type"`
 }
+
+type FieldType string
+
+const (
+	FieldTypeColumn       FieldType = "column"
+	FieldTypeRelationship FieldType = "relationship"
+)
 
 type OrderBy struct{}
 
 type Where struct{}
 
-type TableRelationships struct{}
+type TableRelationships struct {
+	Relationships map[string]Relationship `json:"relationships"`
+
+	SourceTable TableName `json:"source_table"`
+}
+
+type Relationship struct {
+	ColumnMapping map[string]string `json:"column_mapping"`
+
+	RelationshipType RelationshipType `json:"relationship_type"`
+
+	TargetTable TableName `json:"target_table"`
+}
+
+type RelationshipType string
+
+const (
+	RelationshipTypeObject RelationshipType = "object"
+	RelationshipTypeArray  RelationshipType = "array"
+)
 
 type QueryResponse struct {
 	Aggregates map[string]any `json:"aggregates,omitempty"`
