@@ -70,6 +70,16 @@ type Capabilities struct {
 
 	Mutations *MutationCapabilities `json:"mutations,omitempty"`
 
+	// Relationships is whether DC supports executing of relationships queries.
+	//
+	// If the corresponding node is not in the capabilities response,
+	// relationships queries to Hasura GraphQL Engine will return the error
+	//
+	//	"error": {
+	//		"code": "not-supported",
+	//		"error": "Agents must provide their own dataloader.",
+	//		"path": "$"
+	//	}
 	Relationships *RelationshipCapabilities `json:"relationships,omitempty"`
 
 	ScalarTypes map[ScalarType]ScalarTypeCapabilities `json:"scalar_types,omitempty"`
@@ -160,4 +170,5 @@ type ReturningCapabilities any
 
 type UpdateCapabilities any
 
+// RelationshipCapabilities is an empty struct.
 type RelationshipCapabilities struct{}
