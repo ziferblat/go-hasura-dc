@@ -50,18 +50,29 @@ const (
 
 type Capabilities struct {
 	// FIXME: define all supported properties of Capabilities.
-
-	// DataSchema ...
-	DataSchema *DataSchemaCapabilities `json:"data_schema,omitempty"`
-
-	ScalarTypes map[ScalarType]ScalarTypeCapabilities `json:"scalar_types,omitempty"`
+	//
+	// + comparisons: ComparisonCapabilities;
+	// + data_schema: DataSchemaCapabilities;
+	// - explain: ExplainCapabilities;
+	// - metrics: MetricsCapabilities;
+	// + mutations: MutationCapabilities;
+	// - queries: QueryCapabilities;
+	// - raw: RawCapabilities;
+	// + relationships: RelationshipCapabilities;
+	// + scalar_types: ScalarTypesCapabilities;
+	// - subscriptions: SubscriptionCapabilities;
 
 	// Comparisons ...
 	Comparisons *ComparisonCapabilities `json:"comparisons,omitempty"`
 
+	// DataSchema ...
+	DataSchema *DataSchemaCapabilities `json:"data_schema,omitempty"`
+
 	Mutations *MutationCapabilities `json:"mutations,omitempty"`
 
 	Relationships *RelationshipCapabilities `json:"relationships,omitempty"`
+
+	ScalarTypes map[ScalarType]ScalarTypeCapabilities `json:"scalar_types,omitempty"`
 }
 
 type DataSchemaCapabilities struct {
