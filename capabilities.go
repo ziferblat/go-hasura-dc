@@ -60,6 +60,8 @@ type Capabilities struct {
 	Comparisons *ComparisonCapabilities `json:"comparisons,omitempty"`
 
 	Mutations *MutationCapabilities `json:"mutations,omitempty"`
+
+	Relationships *RelationshipCapabilities `json:"relationships,omitempty"`
 }
 
 type DataSchemaCapabilities struct {
@@ -146,3 +148,5 @@ type InsertCapabilities struct {
 type ReturningCapabilities any
 
 type UpdateCapabilities any
+
+type RelationshipCapabilities struct{}
