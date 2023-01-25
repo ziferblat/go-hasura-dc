@@ -50,16 +50,39 @@ const (
 
 type Capabilities struct {
 	// FIXME: define all supported properties of Capabilities.
-
-	// DataSchema ...
-	DataSchema *DataSchemaCapabilities `json:"data_schema,omitempty"`
-
-	ScalarTypes map[ScalarType]ScalarTypeCapabilities `json:"scalar_types,omitempty"`
+	//
+	// + comparisons: ComparisonCapabilities;
+	// + data_schema: DataSchemaCapabilities;
+	// - explain: ExplainCapabilities;
+	// - metrics: MetricsCapabilities;
+	// + mutations: MutationCapabilities;
+	// - queries: QueryCapabilities;
+	// - raw: RawCapabilities;
+	// + relationships: RelationshipCapabilities;
+	// + scalar_types: ScalarTypesCapabilities;
+	// - subscriptions: SubscriptionCapabilities;
 
 	// Comparisons ...
 	Comparisons *ComparisonCapabilities `json:"comparisons,omitempty"`
 
+	// DataSchema ...
+	DataSchema *DataSchemaCapabilities `json:"data_schema,omitempty"`
+
 	Mutations *MutationCapabilities `json:"mutations,omitempty"`
+
+	// Relationships is whether DC supports executing of relationships queries.
+	//
+	// If the corresponding node is not in the capabilities response,
+	// relationships queries to Hasura GraphQL Engine will return the error
+	//
+	//	"error": {
+	//		"code": "not-supported",
+	//		"error": "Agents must provide their own dataloader.",
+	//		"path": "$"
+	//	}
+	Relationships *RelationshipCapabilities `json:"relationships,omitempty"`
+
+	ScalarTypes map[ScalarType]ScalarTypeCapabilities `json:"scalar_types,omitempty"`
 }
 
 type DataSchemaCapabilities struct {
@@ -146,3 +169,6 @@ type InsertCapabilities struct {
 type ReturningCapabilities any
 
 type UpdateCapabilities any
+
+// RelationshipCapabilities is an empty struct.
+type RelationshipCapabilities struct{}
